@@ -45,6 +45,61 @@ on:
         required: false
         type: boolean
         default: false
+  workflow_call:
+
+    inputs:
+
+      artifact:
+        description: "Artifact name to build"
+        required: true
+        type: string
+
+      content:
+        description: "Artifact content to build"
+        required: true
+        type: string
+
+      username:
+        description: "Username for a registry"
+        default: "bot-account"
+        required: false
+        type: string
+
+      # NOTE: the additional inputs below are to support additional
+      # functionality of the workflow.
+      rekor-log-public:
+        description: "Allow publication of your repository name on the public Rekor log"
+        required: false
+        type: boolean
+        default: false
+
+    secrets:
+
+      password:
+        required: false
+        description: "Password for a registry"
+
+      token:
+        description: "Token for a registry or GitHub"
+        required: false
+
+    outputs:
+
+      artifact:
+        description: "Name of the artifact built"
+        value: "${{ fromJSON(jobs.slsa-run.outputs.build-artifacts-outputs).artifact }}"
+
+      status:
+        description: "Status of the build"
+        value: "${{ fromJSON(jobs.slsa-run.outputs.build-artifacts-outputs).status }}"
+
+      provenance-download-name:
+        description: "The name of the provenance attestation uploaded to the workflow run."
+        value: ${{ jobs.slsa-run.outputs.attestations-download-name }}
+
+      provenance-download-sha256:
+        description: "The sha256 of the provenance attestation uploaded to the workflow run."
+        value: ${{ jobs.slsa-run.outputs.attestations-download-sha256 }}
 
 jobs:
   slsa-setup:
