@@ -43,16 +43,17 @@ jobs:
       #         provenance for.
       #
       # ========================================================
-      - name: Generate subject for provenance
-        id: hash
-        run: |
-          set -euo pipefail
+      # - name: Generate subject for provenance
+      #   id: hash
+      #   run: |
+          # set -euo pipefail
           # List the artifacts the provenance will refer to.
-          files=$(ls *)
+          # files=$(ls *)
           # Generate the subjects (base64 encoded)
-          echo "digest :######################## hashes=$(sha256sum $files | base64 -w0)" 
-          echo "content=$(cat app.js)" >> "${GITHUB_OUTPUT}"
-          echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
+          # ls *
+          # echo "digest :######################## hashes=$(sha256sum $files | base64 -w0)" 
+          # echo "content=$(cat app.js)" >> "${GITHUB_OUTPUT}"
+          # echo "hashes=$(sha256sum $files | base64 -w0)" >> "${GITHUB_OUTPUT}"
   provenance:
     needs: [build]
     permissions:
@@ -63,5 +64,5 @@ jobs:
     uses: laurentsimon/byob-doc/.github/workflows/builder_example_slsa3.yml@v0.0.1
     with:
       artifact: "app.js"
-      content: "${{ needs.build.outputs.file }}"
+      content: "testing"
       rekor-log-public: false
