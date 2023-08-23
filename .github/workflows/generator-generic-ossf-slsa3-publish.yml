@@ -59,7 +59,9 @@ jobs:
       actions: read   # To read the workflow path.
       id-token: write # To sign the provenance.
       contents: write # To add assets to a release.
+      packages: write
     uses: laurentsimon/byob-doc/.github/workflows/builder_example_slsa3.yml@v0.0.1
     with:
       artifact: "app.js"
       content: "${{ needs.build.outputs.file }}"
+      rekor-log-public: false
