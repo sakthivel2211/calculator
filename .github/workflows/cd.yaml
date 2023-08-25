@@ -34,6 +34,7 @@ jobs:
           push: false
           tags: "latest"
           labels: ${{ steps.meta.outputs.labels }}
+          attests: type=provenance,mode=[min,max]
 
       - name: Output image
         id: image
@@ -45,16 +46,16 @@ jobs:
 
   # This step calls the container workflow to generate provenance and push it to
   # the container registry.
-  provenance:
-    needs: [build]
-    permissions:
-      actions: read # for detecting the Github Actions environment.
-      id-token: write # for creating OIDC tokens for signing.
-      packages: write # for uploading attestations.
-    # if: startsWith(github.ref, 'refs/tags/')
-    uses: slsa-framework/slsa-github-generator/.github/workflows/generator_container_slsa3.yml@v1.9.0
-    with:
-      image: ${{ needs.build.outputs.image }}
-      digest: ${{ needs.build.outputs.digest }}
-      registry-username: ${{ github.actor }}
-      private-repository: true
+  # provenance:
+  #   needs: [build]
+  #   permissions:
+  #     actions: read # for detecting the Github Actions environment.
+  #     id-token: write # for creating OIDC tokens for signing.
+  #     packages: write # for uploading attestations.
+  #   # if: startsWith(github.ref, 'refs/tags/')
+  #   uses: slsa-framework/slsa-github-generator/.github/workflows/builder_container-based_slsa3.yml@v1.9.0
+  #   with:
+  #     builder-image: ${{ needs.build.outputs.image }}
+  #     builder-digest: ${{ needs.build.outputs.digest }}
+      
+      
