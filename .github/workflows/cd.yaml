@@ -37,6 +37,12 @@ jobs:
           attests: type=provenance,mode=min
           outputs: type=local,dest=out
 
+      - name: Checking file exists or not
+        id:  filecheck
+        run: |
+              ls -la
+       
+
       - name: Output image
         id: image
         run: |
