@@ -36,7 +36,9 @@ jobs:
         uses: docker/build-push-action@v4
         id: build
         with:
+          context: .
           push: true
+          tags: "sakthivel2211/calculator:latest"
           labels: ${{ steps.meta.outputs.labels }}
           provenance: true
 
