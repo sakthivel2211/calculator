@@ -41,6 +41,7 @@ jobs:
         id:  filecheck
         run: |
               ls -la
+              ls ./out/
        
 
       - name: Output image
