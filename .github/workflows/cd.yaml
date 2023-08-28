@@ -34,7 +34,7 @@ jobs:
           push: false
           tags: "latest"
           labels: ${{ steps.meta.outputs.labels }}
-          attests: type=provenance,mode=[min,max]
+          attests: type=provenance,mode=min
 
       - name: Output image
         id: image
@@ -43,6 +43,11 @@ jobs:
           # available to the inputs of a reusable workflow call.
           image_name="${IMAGE_REGISTRY}/${IMAGE_NAME}"
           echo "image=$image_name" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v1
+        if: ${{ always() }}
+        with:
+          name: jmeter-positive-test-results-${{ github.event.inputs.ENV_GRP }}-${{ github.event.inputs.ENV_NAME }}
+          path: ./out
 
   # This step calls the container workflow to generate provenance and push it to
   # the container registry.
