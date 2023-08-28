@@ -35,7 +35,6 @@ jobs:
           tags: "latest"
           labels: ${{ steps.meta.outputs.labels }}
           provenance: true
-          outputs: dest=out
 
       - name: Checking file exists or not
         id:  filecheck
@@ -50,11 +49,11 @@ jobs:
           # available to the inputs of a reusable workflow call.
           image_name="${IMAGE_REGISTRY}/${IMAGE_NAME}"
           echo "image=$image_name" >> "$GITHUB_OUTPUT"
-      - uses: actions/upload-artifact@v1
-        if: ${{ always() }}
-        with:
-          name: outputfile
-          path: ./out/provenance.json
+      # - uses: actions/upload-artifact@v1
+      #   if: ${{ always() }}
+      #   with:
+      #     name: outputfile
+      #     path: ./out/provenance.json
 
   # This step calls the container workflow to generate provenance and push it to
   # the container registry.
