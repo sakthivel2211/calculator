@@ -37,7 +37,7 @@ jobs:
         id: build
         with:
           push: true
-          tags: "latest"
+          tags: "Calculator:latest"
           labels: ${{ steps.meta.outputs.labels }}
           provenance: true
 
