@@ -31,7 +31,7 @@ jobs:
         uses: docker/build-push-action@v4
         id: build
         with:
-          push: false
+          push: true
           tags: "latest"
           labels: ${{ steps.meta.outputs.labels }}
           provenance: true
