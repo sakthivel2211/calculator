@@ -1,4 +1,4 @@
-name: CD with SLSA
+name: Docker Build
 on:
   workflow_dispatch:
   release:
