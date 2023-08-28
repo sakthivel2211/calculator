@@ -35,7 +35,7 @@ jobs:
           tags: "latest"
           labels: ${{ steps.meta.outputs.labels }}
           attests: type=provenance,mode=min
-          outputs: type=local,dest=path
+          outputs: type=local,dest=out
 
       - name: Output image
         id: image
