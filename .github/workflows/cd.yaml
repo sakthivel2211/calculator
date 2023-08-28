@@ -48,7 +48,7 @@ jobs:
         if: ${{ always() }}
         with:
           name: outputfile
-          path: ./out
+          path: ./out/provenance.json
 
   # This step calls the container workflow to generate provenance and push it to
   # the container registry.
