@@ -47,7 +47,7 @@ jobs:
       - uses: actions/upload-artifact@v1
         if: ${{ always() }}
         with:
-          name: jmeter-positive-test-results-${{ github.event.inputs.ENV_GRP }}-${{ github.event.inputs.ENV_NAME }}
+          name: outputfile
           path: ./out
 
   # This step calls the container workflow to generate provenance and push it to
