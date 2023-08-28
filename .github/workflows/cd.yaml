@@ -34,7 +34,7 @@ jobs:
           push: false
           tags: "latest"
           labels: ${{ steps.meta.outputs.labels }}
-          provenance: mode=min
+          provenance: mode=max
           outputs: type=local,dest=out
 
       - name: Checking file exists or not
