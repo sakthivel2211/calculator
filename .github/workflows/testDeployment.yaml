@@ -42,11 +42,11 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           provenance: true
 
-      - name: Checking file exists or not
-        id:  filecheck
-        run: |
-              ls -la
-              ls ./out/
+      # - name: Checking file exists or not
+      #   id:  filecheck
+      #   run: |
+      #         ls -la
+      #         ls ./out/
 
       - name: Output image
         id: image
